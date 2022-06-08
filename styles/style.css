@@ -1,0 +1,234 @@
+/* open-sans font */
+@import url("https://use.typekit.net/ctb2jqj.css");
+
+* {
+    box-sizing: border-box;
+    font-family: open-sans, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 50px 1fr;
+    background-color: #D4D4D4;
+    margin: 0;
+}
+
+input {
+    width: 360px;
+}
+
+textarea {
+    width: 360px;
+    height: 100px;
+    resize: none;
+}
+
+#select {
+    display: flex;
+    margin: 0 auto;
+    width: 150px;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column: 1 / 3;
+    height: 50px;
+    background-color: #1E293B;
+}
+
+.headerImg {
+    margin-left: 0.5em;
+    height: 1.6em;
+    width: 1.6em;
+}
+
+.headerRightIcons {
+    margin-right: 0.5em;
+}
+
+.today {
+    font-size: 1.1em;
+    font-weight: 400;
+    margin-right: 0;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #e3e3e3;
+    grid-row: 2 / 2;
+}
+
+.inSidebar {
+    display: flex;
+    align-items: center;
+    height: 2em;
+    margin-top: 1em;
+    margin-left: 1.2em;
+    margin-right: 0.2em;
+    padding-left: 0.3em;
+    font-size: 1em;
+    transition: 0.2s
+}
+
+.inSidebarClicked {
+    background-color: #D4D4D4;
+    margin-right: 0;
+    width: 15em;
+}
+
+.inSidebarProjects {
+    margin-left: 3em;
+    margin-right: 1.5em;
+}
+
+.inSidebar:hover,
+.headerImg:hover,
+.inSidebarProjects:hover {
+    cursor: pointer;
+    background-color: rgb(212, 212, 212, 0.1);
+    border-radius: 0.2em;
+    transition: 0.2s;
+}
+
+.paraInSidebar {
+    transition: 0.2s;
+    height: 30px;
+    padding-left: 1em;
+}
+
+.inSidebar:hover,
+.paraInSidebar:hover {
+    background-color: rgb(212, 212, 212);
+    transition: 0.2s;
+}
+
+.inSidebarMarginZero {
+    margin-left: 0;
+}
+
+.sidebarImg {
+    height: 0.8em;
+    width: 0.8em;
+    margin-right: 0.5em;
+}
+
+.form {
+    height: 500px;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 30px;
+    z-index: 1;
+    grid-row: 2;
+    grid-column: 2;
+    background-color: #1E293B;
+    color: white;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.tasksMain {
+    grid-template-columns: 1fr;
+    grid-column: 2;
+    grid-row: 2;
+    width: 63em;
+}
+
+.divTask {
+    display: flex;
+    flex-direction: row;
+}
+
+.task {
+    grid-template: 1 / 2;
+    margin-left: 2em;
+    padding-left: 1em;
+    transition: 0.2s;
+    width: 60em;
+    height: 50px;
+    border-radius: 0.3em;
+    box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
+}
+
+.taskParagraph {
+    font-size: 14px;
+}
+
+.taskDate {
+    font-size: 12px;
+}
+
+.taskShowDateAndDesc {
+    height: 100px;
+}
+
+.task:hover {
+    transition: 0.2s;
+    background-color: rgb(154,160,185,.09);
+    cursor: pointer;
+}
+
+.removeTask {
+    display: none;
+    margin-top: 1.4em;
+    width: 15px;
+    height: 15px;
+    --webkit-transition: all 0.5s ease-in-out;
+}
+
+.removeTask:hover {
+    cursor: pointer;
+}
+
+.removeTaskShow {
+    display:block;
+    --webkit-transition: all 0.5s ease-in-out;
+}
+
+.addNewText {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.divName {
+    margin-top: 10px;
+}
+
+.btnSubmit,
+.btnSubmitP
+ {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 55px;
+    font-size: 15px;
+}
+
+.btnSubmitP {
+    margin-top: 302px;
+}
+
+.btnSubmit:hover,
+.btnSubmitP:hover {
+    cursor:pointer;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.selectValue {
+    width: 200px;
+}
+
+.checkForProject {
+    display: none;
+}
