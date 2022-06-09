@@ -1,5 +1,6 @@
 import { createTask } from "./taskCreation";
 import { showAllProjects } from "./showAllProjects";
+import "./styles.css"
 
 export function removeChildNodes(toRemove) {
     while(toRemove.hasChildNodes()) {
