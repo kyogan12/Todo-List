@@ -36,7 +36,7 @@ export function createTask(name, desc, dueDate) {
 
     let imgComplete = document.createElement("img");
     imgComplete.classList.add("removeTask");
-    imgComplete.src = "../images/check-square.svg";
+    imgComplete.src = "./images/check-square.svg";
     //If i check the task as completed, it adds "completed" to that local storage value and it greys out the task
     imgComplete.addEventListener("click", () => {
 
@@ -68,7 +68,7 @@ export function createTask(name, desc, dueDate) {
 
     let imgDelete = document.createElement("img");
     imgDelete.classList.add("removeTask");
-    imgDelete.src = "../images/trash.svg";
+    imgDelete.src = "./images/trash.svg";
     //Deletes values when you press the bin
     imgDelete.addEventListener("click", () => {
         removeChildNodes(div);
@@ -84,7 +84,7 @@ export function createTask(name, desc, dueDate) {
 
     let imgEdit = document.createElement("img");
     imgEdit.classList.add("removeTask", "edit");
-    imgEdit.src = "../images/edit.svg";
+    imgEdit.src = "./images/edit.svg";
     let form = document.querySelector(".editTask");
     imgEdit.addEventListener("click", () => {
 
@@ -93,7 +93,7 @@ export function createTask(name, desc, dueDate) {
         removeChildNodes(divCont);
 
         let editX = document.createElement("img");
-        editX.src = "../images/x.svg";
+        editX.src = "./images/x.svg";
         editX.classList.add("x");
         divCont.appendChild(editX);
         editX.addEventListener("click", () => {

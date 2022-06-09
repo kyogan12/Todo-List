@@ -14,10 +14,10 @@ sidebarArrow.addEventListener("click", changeArrowOnSidebar);
 //Change arrow and show projects
 function changeArrowOnSidebar() {
     let imgArrow = document.querySelector(".toggle");
-    if(imgArrow.getAttribute("src") === "../images/arrow-bottom.svg") {
-        imgArrow.src = "../images/arrow-right.svg";
+    if(imgArrow.getAttribute("src") === "./images/arrow-bottom.svg") {
+        imgArrow.src = "./images/arrow-right.svg";
     } else {
-        imgArrow.src = "../images/arrow-bottom.svg";
+        imgArrow.src = "./images/arrow-bottom.svg";
     };
     divSidebar.classList.toggle("removeTask");
 };

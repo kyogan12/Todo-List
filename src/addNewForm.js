@@ -16,7 +16,7 @@ optionProject.setAttribute("value", "project");
 optionProject.textContent = "Project";
 
 export const x = document.createElement("img");
-x.src = "../images/x.svg";
+x.src = "./images/x.svg";
 x.classList.add("x");
 x.addEventListener("click", () => {
     form.classList.toggle("removeTask");

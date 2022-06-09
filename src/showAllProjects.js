@@ -44,7 +44,7 @@ function allProjectsPage() {
             h3.textContent = prArray[i];
 
             let trashImg = document.createElement("img");
-            trashImg.src = "../images/trash.svg";
+            trashImg.src = "./images/trash.svg";
             trashImg.classList.add("removeTask", "bin");
             trashImg.addEventListener("click", () => {
                     divCont.removeChild(div);
