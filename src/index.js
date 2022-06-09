@@ -1,5 +1,5 @@
 import { createTask } from "./taskCreation";
-import { addNew, createEle } from "./addNewForm";
+import { showAllProjects } from "./showAllProjects";
 
 export function removeChildNodes(toRemove) {
     while(toRemove.hasChildNodes()) {
@@ -24,8 +24,7 @@ function changeArrowOnSidebar() {
 let taskMain = document.querySelector(".tasksMain");
 
 //Creates all tasks on page load
-export 
-function showLocalStorage() {
+export function showLocalStorage() {
     removeChildNodes(taskMain);
     for(let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
