@@ -2,33 +2,40 @@ import { removeChildNodes, showProjectsFromStorage, clickProjects } from ".";
 import { createTask } from "./taskCreation";
 
 //Creating the form
-let form = document.querySelector(".form");
-let selectTaskOrProject = document.createElement("select");
+const form = document.querySelector(".form");
+const selectTaskOrProject = document.createElement("select");
 selectTaskOrProject.setAttribute("id", "select");
 selectTaskOrProject.addEventListener("change", taskOrProject);
 
-let optionTask = document.createElement("option");
+const optionTask = document.createElement("option");
 optionTask.setAttribute("value", "task");
 optionTask.textContent = "Task";
 
-let optionProject = document.createElement("option");
+const optionProject = document.createElement("option");
 optionProject.setAttribute("value", "project");
 optionProject.textContent = "Project";
 
-let addNewText = document.createElement("p");
+const x = document.createElement("img");
+x.src = "../images/x.svg";
+x.classList.add("x");
+x.addEventListener("click", () => {
+    form.classList.toggle("removeTask");
+});
+
+const addNewText = document.createElement("p");
 addNewText.textContent = "Add New";
 addNewText.classList.add("addNewText");
 
-let addToExistingProjects = document.createElement("select");
+const addToExistingProjects = document.createElement("select");
 addToExistingProjects.classList.add("selectValue");
 
-let btnSubmitTask = document.querySelector(".addBtn");
-btnSubmitTask.addEventListener("click", addNew);
+const btnSubmit = document.querySelector(".addBtn");
+btnSubmit.addEventListener("click", addNew);
 
-let divCont = document.createElement("div");
+const divCont = document.createElement("div");
 
 //Template for creating stuff in the form
-function createEle(ele, eleAttr, eleAttrVal, eleText, eleClass, eleTwo, eleTwoInputType, eleTwoClass) {
+export function createEle(ele, eleAttr, eleAttrVal, eleText, eleClass, eleTwo, eleTwoInputType, eleTwoClass, eleTwoText) {
 
     let div = document.createElement("div");
     div.classList.add("divName");
@@ -42,13 +49,14 @@ function createEle(ele, eleAttr, eleAttrVal, eleText, eleClass, eleTwo, eleTwoIn
     let elementTwo = document.createElement(eleTwo);
     elementTwo.type = eleTwoInputType; 
     elementTwo.classList.add(eleTwoClass);
+    elementTwo.textContent = eleTwoText;
     div.appendChild(elementTwo);
 
     divCont.appendChild(div);
     form.appendChild(divCont);
 };
 
-function taskOrProject() {
+export function taskOrProject() {
 
     if(selectTaskOrProject.value === "task") {
         removeChildNodes(divCont);
@@ -74,33 +82,40 @@ function addNew() {
 
     selectTaskOrProject.appendChild(optionTask);
     selectTaskOrProject.appendChild(optionProject);
+    form.appendChild(x);
     form.appendChild(addNewText);
     form.appendChild(selectTaskOrProject);
     taskOrProject();
 };
 
 //Task submit button, creates a new array and stores it as a new value in local storage
-function btnSubmitTask() {
-
+export function btnSubmitTask() {
     let btnSubmit = document.querySelector(".btnSubmit");
     btnSubmit.addEventListener("click", () => {
         let nameValue = document.querySelector(".inputValue").value;
         let descValue = document.querySelector(".undefined").value;
         let dateValue = document.querySelector(".inputValueDate").value;
-        let projectValue = document.querySelector(".selectValue").value;
+        let projectValue;
         if(nameValue === "" || nameValue === " " ||  dateValue === "") {
             alert("Please fill out task and date before you submit.");
             return;
         };
         form.classList.toggle("removeTask");
         createTask(nameValue, descValue, dateValue);
-        let selectTaskOrProject = {nameValue, descValue, dateValue, projectValue};
-        localStorage.setItem(nameValue, JSON.stringify(selectTaskOrProject));
+        if(document.querySelector(".selectValue") !== null) {
+            projectValue = document.querySelector(".selectValue").value;
+            let selectTaskOrProject = {nameValue, descValue, dateValue, projectValue};
+            localStorage.setItem(nameValue, JSON.stringify(selectTaskOrProject));
+        } else {
+            let selectTaskOrProject = {nameValue, descValue, dateValue};
+            localStorage.setItem(nameValue, JSON.stringify(selectTaskOrProject));
+        };
     });
 };
 
 //Project submit button, creates a new key for projects value to display on page load
 function btnSubmitProject() {
+
     let btnSubmitP = document.querySelector(".btnSubmitP");
     btnSubmitP.addEventListener("click", () => {
         let nameValue = document.querySelector(".inputValue").value;
@@ -108,6 +123,7 @@ function btnSubmitProject() {
             alert("Please fill out the project name before you submit.");
             return;
         };
+
         let existingEntries = JSON.parse(localStorage.getItem("projects") || '[]');
         existingEntries.push(nameValue);
         localStorage.setItem("projects", JSON.stringify(existingEntries));
@@ -120,10 +136,9 @@ function btnSubmitProject() {
 
 //If projects exist show them on create new task
 function checkIfProjectsExist() {
-    removeChildNodes(addToExistingProjects);
     
     let div = document.createElement("div");
-    div.classList.add("flexRow");
+    div.classList.add("divExistingProjects");
 
     let existingProjects = JSON.parse(localStorage.getItem("projects"));
     if(existingProjects === null) {return};

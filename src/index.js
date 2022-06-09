@@ -24,6 +24,7 @@ function changeArrowOnSidebar() {
 let taskMain = document.querySelector(".tasksMain");
 
 //Creates all tasks on page load
+export 
 function showLocalStorage() {
     removeChildNodes(taskMain);
     for(let i = 0; i < localStorage.length; i++) {
@@ -35,7 +36,7 @@ function showLocalStorage() {
 };
 
 //Shows all tasks on page load
-let allTasks = document.querySelector(".today");
+let allTasks = document.querySelector(".showAllTasks");
 allTasks.addEventListener("click", () => {
     showLocalStorage();
     allTasks.classList.add("inSidebarClicked");
@@ -43,23 +44,23 @@ allTasks.addEventListener("click", () => {
     project.forEach(para => para.classList.remove("inSidebarClicked"));
 });
 
+
 //Shows all projects onsidebar
-let divSidebar = document.querySelector(".inSidebarProjects");
+let divSidebar = document.querySelector(".projectsContainer");
 export function showProjectsFromStorage() {
+
     removeChildNodes(divSidebar);
     let prArray = JSON.parse(localStorage.getItem("projects"));
     if(prArray === null) {return};
+
     for(let i = 0; i < prArray.length; i++) {
+
         let para = document.createElement("p");
         para.classList.add("projectInSidebar");
         para.textContent = prArray[i];
         divSidebar.appendChild(para);
     };
 };
-
-window.onload = showLocalStorage();
-window.onload = showProjectsFromStorage();
-window.onload = clickProjects();
 
 //Clicking a project in sidebar creates new tasks that belong to that project and shows only them
 export function clickProjects() {
@@ -70,9 +71,12 @@ export function clickProjects() {
         project.classList.add("inSidebarClicked");
         allTasks.classList.remove("inSidebarClicked");
         removeChildNodes(taskMain);
+
         for(let i = 0; i < localStorage.length; i++) {
+
             let key = localStorage.key(i);
             if(key === "projects") {continue};
+
             let toCreate = (JSON.parse(localStorage[key]));
             if(toCreate.projectValue === project.textContent) {
                 createTask(toCreate.nameValue, toCreate.descValue, toCreate.dateValue);
@@ -80,3 +84,7 @@ export function clickProjects() {
         };
     }));
 };
+
+window.onload = showLocalStorage();
+window.onload = showProjectsFromStorage();
+window.onload = clickProjects();

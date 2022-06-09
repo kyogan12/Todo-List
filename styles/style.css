@@ -25,6 +25,10 @@ textarea {
     resize: none;
 }
 
+img:hover {
+    cursor: pointer;
+}
+
 #select {
     display: flex;
     margin: 0 auto;
@@ -51,7 +55,7 @@ textarea {
     margin-right: 0.5em;
 }
 
-.today {
+.showAllTasks {
     font-size: 1.1em;
     font-weight: 400;
     margin-right: 0;
@@ -81,28 +85,30 @@ textarea {
     width: 15em;
 }
 
-.inSidebarProjects {
+.projectsContainer {
     margin-left: 3em;
     margin-right: 1.5em;
 }
 
+.projectInSidebar {
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+    height: 2em;
+    padding-left: 1em;
+}
+
 .inSidebar:hover,
 .headerImg:hover,
-.inSidebarProjects:hover {
+.projectsContainer:hover {
     cursor: pointer;
     background-color: rgb(212, 212, 212, 0.1);
     border-radius: 0.2em;
     transition: 0.2s;
 }
 
-.paraInSidebar {
-    transition: 0.2s;
-    height: 30px;
-    padding-left: 1em;
-}
-
 .inSidebar:hover,
-.paraInSidebar:hover {
+.projectInSidebar:hover {
     background-color: rgb(212, 212, 212);
     transition: 0.2s;
 }
@@ -117,7 +123,8 @@ textarea {
     margin-right: 0.5em;
 }
 
-.form {
+.form,
+.editTask {
     height: 500px;
     width: 400px;
     margin: 0 auto;
@@ -129,6 +136,16 @@ textarea {
     color: white;
     border-radius: 5px;
     padding: 20px;
+    padding-top: 0;
+}
+
+.editTask {
+    height: 250px;
+}
+
+.divTask {
+    display: flex;
+    flex-direction: row;
 }
 
 .tasksMain {
@@ -138,20 +155,25 @@ textarea {
     width: 63em;
 }
 
-.divTask {
-    display: flex;
-    flex-direction: row;
-}
-
 .task {
     grid-template: 1 / 2;
-    margin-left: 2em;
+    margin-left: 1em;
     padding-left: 1em;
     transition: 0.2s;
     width: 60em;
     height: 50px;
     border-radius: 0.3em;
     box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
+}
+
+.completed {
+    opacity: 50%;
+}
+
+.task:hover {
+    transition: 0.2s;
+    background-color: rgb(154,160,185,.09);
+    cursor: pointer;
 }
 
 .taskParagraph {
@@ -166,22 +188,11 @@ textarea {
     height: 100px;
 }
 
-.task:hover {
-    transition: 0.2s;
-    background-color: rgb(154,160,185,.09);
-    cursor: pointer;
-}
-
 .removeTask {
     display: none;
-    margin-top: 1.4em;
     width: 15px;
     height: 15px;
     --webkit-transition: all 0.5s ease-in-out;
-}
-
-.removeTask:hover {
-    cursor: pointer;
 }
 
 .removeTaskShow {
@@ -214,15 +225,18 @@ textarea {
     margin-top: 302px;
 }
 
-.btnSubmit:hover,
-.btnSubmitP:hover {
-    cursor:pointer;
+.editBtn {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 60px;
+    height: 25px;
 }
 
-.flexRow {
+.divExistingProjects {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
 }
 
 .selectValue {
@@ -231,4 +245,18 @@ textarea {
 
 .checkForProject {
     display: none;
+}
+
+.divExistingProjects {
+    margin-top: 1.1em;
+}
+
+.x {
+    display: flex;
+    position: relative;
+    left: 365px;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 4.5px;
 }
