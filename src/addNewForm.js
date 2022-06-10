@@ -35,7 +35,17 @@ btnSubmit.addEventListener('click', addNew);
 const divCont = document.createElement('div');
 
 // Template for creating stuff in the form
-function createEle(ele, atr, val, text, eclass, eleTwo, eleTwoInputType, eleTwoClass, eleTwoText) {
+function createEle(
+  ele,
+  atr,
+  val,
+  text,
+  eclass,
+  eleTwo,
+  eleTwoInputType,
+  eleTwoClass,
+  eleTwoText,
+) {
   const div = document.createElement('div');
   div.classList.add('divName');
 
@@ -63,7 +73,9 @@ function checkIfProjectsExist() {
   div.classList.add('divExistingProjects');
 
   const existingProjects = JSON.parse(localStorage.getItem('projects'));
-  if (existingProjects === null) { return; }
+  if (existingProjects === null) {
+    return;
+  }
 
   const label = document.createElement('label');
   label.textContent = 'Add to existing project:';
@@ -102,7 +114,10 @@ export function btnSubmitTask() {
     if (document.querySelector('.selectValue') !== null) {
       projectValue = document.querySelector('.selectValue').value;
       const setValue = {
-        nameValue, descValue, dateValue, projectValue,
+        nameValue,
+        descValue,
+        dateValue,
+        projectValue,
       };
       localStorage.setItem(nameValue, JSON.stringify(setValue));
     } else {
@@ -121,7 +136,9 @@ function btnSubmitProject() {
       alert('Please fill out the project name before you submit.');
       return;
     }
-    const existingEntries = JSON.parse(localStorage.getItem('projects') || '[]');
+    const existingEntries = JSON.parse(
+      localStorage.getItem('projects') || '[]',
+    );
     for (let i = 0; i < existingEntries.length; i++) {
       if (nameValue === existingEntries[i]) {
         alert('A project with that name already exists.');
@@ -140,8 +157,26 @@ function btnSubmitProject() {
 export function taskOrProject() {
   if (selectTaskOrProject.value === 'task') {
     removeChildNodes(divCont);
-    createEle('label', 'for', 'name', 'Task Name: ', 'label', 'input', 'text', 'inputValue');
-    createEle('label', 'for', 'date', 'Due Date:  ', 'label', 'input', 'date', 'inputValueDate');
+    createEle(
+      'label',
+      'for',
+      'name',
+      'Task Name: ',
+      'label',
+      'input',
+      'text',
+      'inputValue',
+    );
+    createEle(
+      'label',
+      'for',
+      'date',
+      'Due Date:  ',
+      'label',
+      'input',
+      'date',
+      'inputValueDate',
+    );
     createEle('label', 'id', 'labelTxtArea', 'Description: ');
     const txtForm = document.createElement('textarea');
     txtForm.setAttribute('id', 'textarea');
@@ -151,7 +186,16 @@ export function taskOrProject() {
     btnSubmitTask();
   } else if (selectTaskOrProject.value === 'project') {
     removeChildNodes(divCont);
-    createEle('label', 'for', 'name', 'Project Name: ', 'label', 'input', 'text', 'inputValue');
+    createEle(
+      'label',
+      'for',
+      'name',
+      'Project Name: ',
+      'label',
+      'input',
+      'text',
+      'inputValue',
+    );
     createEle('button', 'type', 'Button', 'Submit', 'btnSubmitP');
     btnSubmitProject();
   }

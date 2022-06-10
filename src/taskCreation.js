@@ -3,7 +3,14 @@ import { checkIfProjectsExist, x } from './addNewForm';
 
 const divCont = document.createElement('div');
 
-export function elemCreate(ele, eleText, eleTwo, eleTwoText, eleTwoClass, eleTwoType) {
+export function elemCreate(
+  ele,
+  eleText,
+  eleTwo,
+  eleTwoText,
+  eleTwoClass,
+  eleTwoType,
+) {
   const div = document.createElement('div');
   const elem = document.createElement(ele);
   elem.textContent = eleText;
@@ -33,9 +40,11 @@ function editBtnSubmit(name) {
     }
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key === 'projects') { continue; }
+      if (key === 'projects') {
+        continue;
+      }
 
-      const toCreate = (JSON.parse(localStorage[key]));
+      const toCreate = JSON.parse(localStorage[key]);
       if (toCreate.nameValue === name) {
         localStorage.removeItem(localStorage.key(i));
       }
@@ -43,7 +52,10 @@ function editBtnSubmit(name) {
       if (toCreate.projectValue !== null) {
         const { projectValue } = toCreate;
         const selectTaskOrProject = {
-          nameValue, descValue, dateValue, projectValue,
+          nameValue,
+          descValue,
+          dateValue,
+          projectValue,
         };
         localStorage.setItem(nameValue, JSON.stringify(selectTaskOrProject));
       } else {
@@ -66,8 +78,10 @@ export function createTask(name, desc, dueDate) {
   div.appendChild(para);
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key === 'projects') { continue; }
-    const toCreate = (JSON.parse(localStorage[key]));
+    if (key === 'projects') {
+      continue;
+    }
+    const toCreate = JSON.parse(localStorage[key]);
     if (toCreate.nameValue === name) {
       if (toCreate.completed !== undefined) {
         para.classList.add('completed');
@@ -96,8 +110,10 @@ export function createTask(name, desc, dueDate) {
 
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key === 'projects') { continue; }
-      const toCreate = (JSON.parse(localStorage[key]));
+      if (key === 'projects') {
+        continue;
+      }
+      const toCreate = JSON.parse(localStorage[key]);
       if (toCreate.nameValue === name) {
         const { nameValue } = toCreate;
         const { descValue } = toCreate;
@@ -107,12 +123,19 @@ export function createTask(name, desc, dueDate) {
 
         if (toCreate.completed !== undefined) {
           const selectTaskOrProject = {
-            nameValue, descValue, dateValue, projectValue,
+            nameValue,
+            descValue,
+            dateValue,
+            projectValue,
           };
           localStorage.setItem(nameValue, JSON.stringify(selectTaskOrProject));
         } else {
           const selectTaskOrProject = {
-            nameValue, descValue, dateValue, projectValue, completed,
+            nameValue,
+            descValue,
+            dateValue,
+            projectValue,
+            completed,
           };
           localStorage.setItem(nameValue, JSON.stringify(selectTaskOrProject));
         }
@@ -128,8 +151,10 @@ export function createTask(name, desc, dueDate) {
     removeChildNodes(div);
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key === 'projects') { continue; }
-      const toCreate = (JSON.parse(localStorage[key]));
+      if (key === 'projects') {
+        continue;
+      }
+      const toCreate = JSON.parse(localStorage[key]);
       if (toCreate.nameValue === name) {
         localStorage.removeItem(localStorage.key(i));
       }
@@ -154,8 +179,22 @@ export function createTask(name, desc, dueDate) {
     });
 
     elemCreate('label', 'Edit Task Name: ', 'input', name, 'editName', 'text');
-    elemCreate('label', 'Edit Task Date: ', 'input', dueDate, 'editDate', 'date');
-    elemCreate('label', 'Edit Task Description: ', 'input', desc, 'editDesc', 'text');
+    elemCreate(
+      'label',
+      'Edit Task Date: ',
+      'input',
+      dueDate,
+      'editDate',
+      'date',
+    );
+    elemCreate(
+      'label',
+      'Edit Task Description: ',
+      'input',
+      desc,
+      'editDesc',
+      'text',
+    );
 
     const editBtn = document.createElement('button');
     editBtn.type = 'button';

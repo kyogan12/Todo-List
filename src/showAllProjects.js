@@ -42,7 +42,7 @@ function allProjectsPage() {
         divCont.removeChild(div);
         for (let i = 0; i < localStorage.length; i++) {
           const key = localStorage.key(i);
-          const toCreate = (JSON.parse(localStorage[key]));
+          const toCreate = JSON.parse(localStorage[key]);
 
           const index = prArray.indexOf(prArray[i - 1]);
           prArray.splice(index, 1);
@@ -57,7 +57,7 @@ function allProjectsPage() {
 
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        const toCreate = (JSON.parse(localStorage[key]));
+        const toCreate = JSON.parse(localStorage[key]);
         if (toCreate.projectValue === h3.textContent) {
           const taskPara = document.createElement('p');
           taskPara.textContent = toCreate.nameValue;

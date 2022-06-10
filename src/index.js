@@ -28,8 +28,10 @@ export function showLocalStorage() {
   removeChildNodes(taskMain);
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key === 'projects') { continue; }
-    const toCreate = (JSON.parse(localStorage[key]));
+    if (key === 'projects') {
+      continue;
+    }
+    const toCreate = JSON.parse(localStorage[key]);
     createTask(toCreate.nameValue, toCreate.descValue, toCreate.dateValue);
   }
 }
@@ -48,7 +50,9 @@ let divSidebar = document.querySelector('.projectsContainer');
 export function showProjectsFromStorage() {
   removeChildNodes(divSidebar);
   const prArray = JSON.parse(localStorage.getItem('projects'));
-  if (prArray === null) { return; }
+  if (prArray === null) {
+    return;
+  }
 
   for (let i = 0; i < prArray.length; i++) {
     const para = document.createElement('p');
@@ -69,11 +73,17 @@ export function clickProjects() {
 
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key === 'projects') { continue; }
+      if (key === 'projects') {
+        continue;
+      }
 
-      const toCreate = (JSON.parse(localStorage[key]));
+      const toCreate = JSON.parse(localStorage[key]);
       if (toCreate.projectValue === project.textContent) {
-        createTask(toCreate.nameValue, toCreate.descValue, toCreate.dateValue);
+        createTask(
+          toCreate.nameValue,
+          toCreate.descValue,
+          toCreate.dateValue,
+        );
       }
     }
   }));
