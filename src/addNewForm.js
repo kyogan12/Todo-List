@@ -29,6 +29,9 @@ addNewText.classList.add('addNewText');
 const addToExistingProjects = document.createElement('select');
 addToExistingProjects.classList.add('selectValue');
 
+const btnSubmit = document.querySelector('.addBtn');
+btnSubmit.addEventListener('click', addNew);
+
 const divCont = document.createElement('div');
 
 // Template for creating stuff in the form
@@ -85,26 +88,26 @@ export function btnSubmitTask() {
   const btnSubmit = document.querySelector('.btnSubmit');
   btnSubmit.addEventListener('click', () => {
     const nameValue = document.querySelector('.inputValue').value;
-    const descValue = document.querySelector('.undefined').value;
+    const descValue = document.getElementById('textarea').value;
     const dateValue = document.querySelector('.inputValueDate').value;
     let projectValue;
     if (nameValue === '' || nameValue === ' ' || dateValue === '') {
       alert('Please fill out task and date before you submit.');
       return;
     }
-
+    console.log(descValue);
     form.classList.toggle('removeTask');
     createTask(nameValue, descValue, dateValue);
 
     if (document.querySelector('.selectValue') !== null) {
       projectValue = document.querySelector('.selectValue').value;
-      const selectTaskOrProject = {
+      const setValue = {
         nameValue, descValue, dateValue, projectValue,
       };
-      localStorage.setItem(nameValue, JSON.stringify(selectTaskOrProject));
+      localStorage.setItem(nameValue, JSON.stringify(setValue));
     } else {
-      const selectTaskOrProject = { nameValue, descValue, dateValue };
-      localStorage.setItem(nameValue, JSON.stringify(selectTaskOrProject));
+      const setValue = { nameValue, descValue, dateValue };
+      localStorage.setItem(nameValue, JSON.stringify(setValue));
     }
   });
 }
@@ -141,6 +144,7 @@ export function taskOrProject() {
     createEle('label', 'for', 'date', 'Due Date:  ', 'label', 'input', 'date', 'inputValueDate');
     createEle('label', 'id', 'labelTxtArea', 'Description: ');
     const txtForm = document.createElement('textarea');
+    txtForm.setAttribute('id', 'textarea');
     divCont.appendChild(txtForm); // cant use the template to make this one
     checkIfProjectsExist();
     createEle('button', 'type', 'Button', 'Submit', 'btnSubmit');
@@ -165,6 +169,3 @@ function addNew() {
   form.appendChild(selectTaskOrProject);
   taskOrProject();
 }
-
-const btnSubmit = document.querySelector('.addBtn');
-btnSubmit.addEventListener('click', addNew);
